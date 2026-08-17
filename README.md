@@ -1,10 +1,6 @@
-# Site Factory — Modèle maître neutre
+# Maison Auréline — Template Joaillerie Luxury
 
-Ce repository est la fondation technique de la Site Factory. Il ne représente aucune entreprise et ne doit jamais être transformé directement en site client.
-
-## Règle principale
-
-Avant toute personnalisation, utilisez **Use this template** sur GitHub pour créer un nouveau repository. Le modèle maître doit toujours rester neutre.
+Template éditorial réutilisable pour une maison de bijouterie ou de haute joaillerie. La marque présentée, Maison Auréline, est entièrement fictive.
 
 ## Technologies
 
@@ -14,27 +10,27 @@ Avant toute personnalisation, utilisez **Use this template** sur GitHub pour cr�
 - Tailwind CSS 4
 - pnpm
 
-## Zones de personnalisation
+## Personnalisation centralisée
 
 - `src/config/site.ts` : identité, coordonnées, navigation et thème actif.
-- `src/content/content.ts` : textes et contenus fréquemment modifiés.
-- `src/styles/themes.css` : couleurs et variables visuelles des thèmes.
+- `src/content/content.ts` : textes, collections, pièces et chemins des visuels.
+- `src/styles/themes.css` : palette et variables visuelles.
 - `src/components` : sections et briques réutilisables.
 
-## Procédure pour un nouveau template
+Les visuels du template sont regroupés dans `public/images`.
 
-1. Créer un repository depuis ce modèle.
-2. Cloner le nouveau repository sur l’ordinateur.
-3. Ouvrir son dossier dans une nouvelle tâche Codex.
-4. Construire et vérifier le template.
-5. Commit et push avec GitHub Desktop.
-6. Importer le repository dans Vercel.
+## Formulaire de rendez-vous
 
-## Vérifications
+Le formulaire ne transmet et ne stocke aucune donnée sur le site. Lors de sa validation, il construit une URL `mailto:` et ouvre la messagerie du visiteur avec un e-mail prérempli contenant le nom, l’adresse e-mail, le téléphone, le type de demande et le message saisis.
+
+L’adresse destinataire provient de `siteConfig.contact.email` dans `src/config/site.ts`. Ce fonctionnement est prévu pour la démonstration et ne remplace pas un service d’envoi côté serveur.
+
+## Commandes
 
 ```bash
+pnpm dev
 pnpm lint
 pnpm build
 ```
 
-Le serveur local se lance avec `pnpm dev` et s’affiche sur `http://localhost:3000`.
+Le serveur local est disponible sur `http://localhost:3000`.

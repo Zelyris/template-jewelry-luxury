@@ -1,55 +1,42 @@
+import Image from "next/image";
 import { ActionLink } from "@/components/ui/ActionLink";
 import { Container } from "@/components/ui/Container";
-import type { HeroContent } from "@/lib/types";
+import type { homeContent } from "@/content/content";
 
-type HeroProps = {
-  content: HeroContent;
-  themeLabel: string;
-};
+type HeroProps = { content: typeof homeContent.hero };
 
-export function Hero({ content, themeLabel }: HeroProps) {
+export function Hero({ content }: HeroProps) {
   return (
-    <section id="accueil" className="overflow-hidden py-20 sm:py-28">
-      <Container className="grid items-center gap-12 lg:grid-cols-[1.2fr_.8fr]">
-        <div>
-          <p className="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-brand">
-            {content.eyebrow}
-          </p>
-          <h1 className="max-w-4xl text-balance text-5xl font-semibold tracking-[-0.05em] sm:text-6xl lg:text-7xl">
+    <section id="accueil" className="relative flex min-h-[48rem] items-end overflow-hidden bg-deep text-white sm:min-h-[52rem] lg:min-h-screen">
+      <Image
+        src={content.image}
+        alt={content.imageAlt}
+        fill
+        priority
+        loading="eager"
+        sizes="100vw"
+        className="hero-image object-cover object-[68%_center] lg:object-center"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,4,3,.92)_0%,rgba(4,4,3,.58)_40%,rgba(4,4,3,.08)_78%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(4,4,3,.62)_0%,transparent_45%)]" />
+
+      <Container className="relative z-10 pb-14 pt-36 sm:pb-20 lg:pb-20">
+        <div className="reveal-up max-w-3xl">
+          <p className="eyebrow text-accent">{content.eyebrow}</p>
+          <h1 className="mt-6 text-balance font-serif text-[4.4rem] font-normal leading-[0.82] tracking-[-0.045em] sm:text-[6.5rem] lg:text-[8.2rem]">
             {content.title}
           </h1>
-          <p className="mt-7 max-w-2xl text-pretty text-lg leading-8 text-muted sm:text-xl">
+          <p className="mt-7 max-w-xl text-sm leading-7 text-white/70 sm:text-base">
             {content.introduction}
           </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <ActionLink {...content.primaryAction} />
-            <ActionLink {...content.secondaryAction} variant="secondary" />
+          <div className="mt-9 flex flex-wrap gap-7">
+            <ActionLink {...content.primaryAction} variant="light" />
+            <ActionLink {...content.secondaryAction} variant="line" />
           </div>
         </div>
-
-        <aside className="relative rounded-[var(--site-radius)] border border-line bg-surface p-7 shadow-[var(--site-shadow)] sm:p-9">
-          <div className="absolute -right-16 -top-16 size-48 rounded-full bg-accent/35 blur-3xl" aria-hidden="true" />
-          <p className="relative text-xs font-bold uppercase tracking-[0.18em] text-brand">
-            Modèle maître
-          </p>
-          <dl className="relative mt-7 grid gap-6">
-            <div>
-              <dt className="text-sm text-muted">Identité métier</dt>
-              <dd className="mt-1 font-semibold">Aucune</dd>
-            </div>
-            <div>
-              <dt className="text-sm text-muted">Thème de départ</dt>
-              <dd className="mt-1 font-semibold">{themeLabel}</dd>
-            </div>
-            <div>
-              <dt className="text-sm text-muted">Règle</dt>
-              <dd className="mt-1 flex items-center gap-2 font-semibold">
-                <span className="size-2.5 rounded-full bg-brand" aria-hidden="true" />
-                Dupliquer avant de personnaliser
-              </dd>
-            </div>
-          </dl>
-        </aside>
+        <p className="mt-16 text-[0.58rem] uppercase tracking-[0.2em] text-white/45 sm:absolute sm:bottom-20 sm:right-10 sm:mt-0 lg:right-14">
+          {content.imageNote}
+        </p>
       </Container>
     </section>
   );
